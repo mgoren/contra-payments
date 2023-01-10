@@ -1,0 +1,215 @@
+body {
+  background-color: #f0ebf8 !important;
+}
+
+#back {
+  float: right;
+  opacity: .7;
+}
+
+#payment {
+  margin-top: 24px;
+}
+
+.cart {
+  font-weight: 500;
+  margin-top: 12px;
+  margin-bottom: 50px;
+  padding-bottom: 20px;
+}
+
+#cart {
+  background-color: lightyellow;
+}
+
+#cart button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#cart-2, #cart-2 p {
+  border: none;
+  text-align: center;
+}
+
+.box {
+  background-color: white;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 24px;
+  padding-top: 22px;
+}
+
+.header {
+  border-top: 10px solid #613cb0;
+  margin-top: 12px;
+}
+
+.header h2 { 
+  text-align: center;
+}
+
+.header p {
+  margin: auto;
+  text-align: left;
+  padding-top: 10px;
+}
+
+.payment-form {
+  max-width: 650px;
+  margin: auto;
+  text-align: left;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.payment-form .row {
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+
+/* .payment-form .content {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+  background-color: white;
+} */
+
+.payment-form p {
+  text-align: left;
+  max-width: 500px;
+  opacity: 0.7;
+  font-size: 11pt;
+}
+.payment-form form {
+  border-top: 2px solid #5ea4f3;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+  background-color: #fff;
+  padding: 0;
+  max-width: 600px;
+  margin: auto;
+}
+.payment-form .title {
+  font-size: 1em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 0.8em;
+  font-weight: 600;
+  padding-bottom: 8px;
+}
+.payment-form .products {
+  padding: 25px;
+}
+.payment-form .products .item {
+  margin-bottom: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+.payment-form .products .item-name {
+  font-weight: 600;
+  font-size: 0.9em;
+}
+.payment-form #admission-cost {
+  padding-left: 0.5rem;
+  width: 4rem;
+}
+.payment-form #admission-quantity {
+  width: 4rem;
+  padding-left: 0.5rem;
+}
+.payment-form #note {
+  display: none;
+}
+.payment-form #note #order_note {
+  margin-top: 0.5rem;
+}
+.payment-form .products .total {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
+  padding-top: 19px;
+  font-weight: 600;
+  line-height: 1;
+}
+.payment-form .details {
+  padding: 25px 25px 15px;
+}
+.payment-form .details label {
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #79818a;
+  text-transform: uppercase;
+}
+.payment-form .button {
+  cursor: pointer;
+  font-weight: 500;
+  left: 3px;
+  line-height: inherit;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  display: inline-block;
+}
+.payment-form .button--small {
+  padding: 10px 20px;
+  font-size: 0.875rem;
+}
+.payment-form .button--green {
+  outline: none;
+  background-color: #64d18a;
+  border-color: #64d18a;
+  color: white;
+  transition: all 200ms ease;
+}
+.payment-form .button--green:hover {
+  background-color: #8bdda8;
+  color: white;
+}
+.payment-form .date-separator {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+.payment-form .form-row {
+  padding: 20px;
+}
+
+@media (min-width: 576px) {
+  #order_note {
+    width: 155%;
+ }
+}
+
+@media (min-width: 606px) {
+  .admissions-container {
+    display: grid;
+    grid-template-columns: 75% 20%;
+    gap: 5%;
+ }
+
+ #admission-cost-container{
+  justify-self: right;
+ }
+ 
+  #admission-quantity {
+    float: right;
+ }
+  .payment-form .title {
+    font-size: 1.2em;
+ }
+  .payment-form .products {
+    padding: 40px;
+ }
+  .payment-form .products .item-name {
+    font-size: 1em;
+ }
+  .payment-form .products .quantity {
+    font-size: 1em;
+ }
+  .payment-form .details {
+    padding: 40px 40px 30px;
+ }
+}

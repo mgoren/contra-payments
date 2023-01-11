@@ -2,9 +2,13 @@ var sliding_scale_min = 15;
 var sliding_scale_max = 30;
 
 document.addEventListener('DOMContentLoaded', function() {
+  window.nameField = document.getElementById('name');
+  window.emailField = document.getElementById('email');
+  window.phoneField = document.getElementById('phone');
   window.pricePerField = document.getElementById('admission-cost');
   window.quantityField = document.getElementById('admission-quantity');
-  window.noteField = document.getElementById('note');
+  window.noteSection = document.getElementById('note');
+  window.noteField = document.getElementById('order_note');
   window.totalField = document.getElementById('total');
   window.totalField2 = document.getElementById('total-2');
   window.totalDetailsField = document.getElementById('total-details');
@@ -24,9 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
 var toggleNote = function() {
   var quantity = quantityField.value;
   if (!isNaN(quantity) && quantity > 1) {
-    noteField.style.display = 'block';
+    noteSection.style.display = 'block';
   } else {
-    noteField.style.display = 'none';
+    noteSection.style.display = 'none';
   }
 };
 

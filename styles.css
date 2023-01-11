@@ -2,6 +2,11 @@ body {
   background-color: #f0ebf8 !important;
 }
 
+#thanks {
+  margin-top: 20px;
+  padding: 30px;
+}
+
 #back {
   float: right;
   opacity: .7;

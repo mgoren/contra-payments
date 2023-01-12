@@ -29,7 +29,7 @@ const paypalButtonsComponent = paypal.Buttons({
       setCookie('pricePer', pricePerField.value);
       setCookie('quantity', quantityField.value);
       setCookie('total', parseInt(quantityField.value) * parseInt(pricePerField.value));
-      location.href='success.php';
+      location.href='registered/';
     };
     return actions.order.capture().then(captureOrderHandler);
   },

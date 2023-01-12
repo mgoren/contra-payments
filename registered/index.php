@@ -3,7 +3,7 @@
   <head>
     <title>Portland Megaband 2023</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel='stylesheet' href='styles.css'>
+    <link rel='stylesheet' href='../styles.css'>
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css'>
   </head>
   <body>
@@ -17,7 +17,10 @@
       $quantity= $_COOKIE["quantity"];
       $pricePer= $_COOKIE["pricePer"];
       $total= $_COOKIE["total"];
-      if ($_COOKIE["webhookSent"] != "true") {
+
+      if ($name === null) {
+        echo "<script type='text/JavaScript'>document.addEventListener('DOMContentLoaded', function() {document.getElementById('thanks').classList.add('d-none'); document.getElementById('nocookies').classList.remove('d-none')});</script>";
+      } elseif ($_COOKIE["webhookSent"] != "true") {
         $messagePayload = [
           'url' => $url,
           'auth' => $auth,
@@ -35,7 +38,8 @@
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($messagePayload));
         $response = curl_exec($ch);
         if ($response === false) {
-          echo "<script type='text/JavaScript'>document.addEventListener('DOMContentLoaded', function() {document.getElementById('failure').classList.remove('d-none');});</script>";
+          echo $response;
+          echo "<script type='text/JavaScript'>document.addEventListener('DOMContentLoaded', function() {document.getElementById('failure').classList.remove('d-none');document.getElementById('thanks').classList.add('d-none');});</script>";
         } else {
           echo "<script type='text/JavaScript'>document.addEventListener('DOMContentLoaded', function() {document.cookie = 'webhookSent=true;'; document.getElementById('success').classList.remove('d-none');});</script>";
         }
@@ -51,9 +55,15 @@
           Please email us at <a href="contra@portlandcountrydance.org">contra@portlandcountrydance.org</a>.
         </strong></p>
       </div>
+      <div id="nocookies" class="box d-none">
+        <p>This site will not work without cookies enabled.</p>
+        <p>If you are not able to enable cookies, you can still do advance registration by sending a check to PCDC.</p>
+        <p>Email <a href="contra@portlandcountrydance.org">contra@portlandcountrydance.org</a> for more info.</p>
+      </div>
       <section id="thanks">
         <div class="block-heading">
           <h2>Thanks, <?= $name ?>!</h2>
+          <p>Thank you for registering in advance for the Portland Megaband dance. This will guarantee your place at the event.</p>
         </div>
         <div class="row">
           <div class="col-md-12 thanks">
@@ -65,7 +75,7 @@
             <hr>
             <p>
               Saturday, March 11, 2023<br>
-              7:30pm (doors at 7)<br>
+              7:30pm (doors at 6:30, beginner lesson at 7:00)<br>
               Oaks Park Dance Pavilion<br>
               7805 SE Oaks Park Way in Portland
             </p>

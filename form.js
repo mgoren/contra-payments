@@ -1,8 +1,17 @@
 var sliding_scale_min = 15;
 var sliding_scale_max = 30;
+var quantity_max = 4;
+
+var deleteCookie = function(name) {
+  document.cookie = name +"=; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+};
+['webhookSent','name','email','phone','note','pricePer','quantity','total'].forEach(cookie=>deleteCookie(cookie));
+
+if (!navigator.cookieEnabled) {
+  location.href="nocookies.html";
+}
 
 document.addEventListener('DOMContentLoaded', function() {
-  setCookie('webhookSent', 'false');
   window.nameField = document.getElementById('name');
   window.emailField = document.getElementById('email');
   window.phoneField = document.getElementById('phone');
@@ -52,8 +61,8 @@ var quantityUpdated = function() {
   var quantity = parseInt(quantityField.value);
   if (isNaN(quantity) || quantity < 1) {
     quantityField.value = '1';
-  } else if (quantity > 9) {
-    quantityField.value = '9';
+  } else if (quantity > quantity_max) {
+    quantityField.value = quantity_max;
   }
   toggleNote();
   updateTotal();
@@ -88,8 +97,4 @@ var checkout = function(e) {
 var back = function() {
   paymentSection.classList.add('d-none');
   paymentForm.classList.remove('d-none');
-};
-
-var setCookie = function(name, value) {
-  document.cookie = name + "=" + value + ";";
 };

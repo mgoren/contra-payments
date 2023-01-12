@@ -1,3 +1,5 @@
 # Contra-Payments
 
-## Simple front-end site to sell contra dance tickets via PayPal
+Simple site to sell contra dance tickets via PayPal
+
+Mostly front-end, with a dash of PHP

@@ -22,21 +22,27 @@ const paypalButtonsComponent = paypal.Buttons({
   },
   onApprove: (data, actions) => {
     const captureOrderHandler = (details) => {
-      localStorage.setItem('name', nameField.value);
-      localStorage.setItem('email', emailField.value);
-      localStorage.setItem('phone', phoneField.value);
-      localStorage.setItem('note', noteField.value);
-      localStorage.setItem('pricePer', pricePerField.value);
-      localStorage.setItem('quantity', quantityField.value);
-      location.href='success.html';
+      setCookie('name', nameField.value);
+      setCookie('email', emailField.value);
+      setCookie('phone', phoneField.value);
+      setCookie('note', noteField.value);
+      setCookie('pricePer', pricePerField.value);
+      setCookie('quantity', quantityField.value);
+      setCookie('total', parseInt(quantityField.value) * parseInt(pricePerField.value));
+      location.href='success.php';
     };
     return actions.order.capture().then(captureOrderHandler);
   },
   onError: (err) => {
-    console.error('An error prevented the buyer from checking out with PayPal');
+    console.log(err);
+    location.href='failure.html';
   }
 });
 
 paypalButtonsComponent.render("#paypal-button-container").catch((err) => {
   console.error('PayPal Buttons failed to render');
 });
+
+var setCookie = function(name, value) {
+  document.cookie = name + "=" + value + ";";
+};

@@ -3,7 +3,7 @@
   <head>
     <title>Portland Megaband 2023</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <script type="text/javascript" src="form.js"></script>
+    <script type="text/javascript" src="form.js?v=5"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AfeU3URC6FLukidcSjXRzZh2BwwwS_JsMM_T9VkjXsP591D4r__zomC4c4R5OIIk3OZiewFplpwBw9oG&disable-funding=credit&currency=USD&intent=capture&enable-funding=venmo" data-sdk-integration-source="integrationbuilder"></script>
     <script type="text/javascript" src="paypal.js"></script>
     <link rel='stylesheet' href='styles.css'>
@@ -11,13 +11,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
-
+    <noscript>
+      <div class="box">
+        <p class='text-danger text-center'>JavaScript is not enabled.<br>Please enable JavaScript or follow instructions below to register by check.</p>
+      </div>
+    </noscript>
     <section class="payment-form" id="payment-form">
       <div class="box header">
-        <h2>Portland Megaband Dance 2023 &mdash; SANDBOX MODE</h2>
+        <h2><span class='text-danger'>SANDBOX MODE</span><br>Portland Megaband Dance 2023</h2>
         <hr>
         <p>The dance will take place on Saturday, March 11 at 7:30 pm (doors at 7). It will take place at the Oaks Park Dance Pavilion, 7805 SE Oaks Park Way in Portland. Parking is free. Cost is a sliding scale from $15-30 per person.</p>
         <p><strong>Covid policy:</strong> Everyone must be vaccinated, including at least one booster if eligible. A well-fitted mask covering nose and mouth is required for attendees. PCDC's full Covid policy is available <a href="https://pcdc.fun/covid19" target=_blank>here</a>.</p>
+        <p><strong>Note on payment by check:</strong> If you are paying by check, please do not fill out this form. Instead, send a check to PCDC (ADDRESS HERE), along with a note including your name, email, phone, and the name of anyone else you're registering. The cost is a sliding scale from $15-30 per person.</p>
       </div>
       <div class='form'>
         <div class="box details"> 
@@ -39,6 +44,9 @@
               <label for="order_phone">Phone</label>
               <input id="phone" required="required" maxlength="50" class="form-control" size="50" type="tel" name="order[phone]" id="order_phone" />
             </div>
+          </div>
+          <div id="warning" class="text-danger d-none">
+            <p><strong>Please fill in all fields.</strong></p>
           </div>
         </div>
 

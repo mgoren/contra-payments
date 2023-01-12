@@ -2,6 +2,7 @@ var sliding_scale_min = 15;
 var sliding_scale_max = 30;
 
 document.addEventListener('DOMContentLoaded', function() {
+  setCookie('webhookSent', 'false');
   window.nameField = document.getElementById('name');
   window.emailField = document.getElementById('email');
   window.phoneField = document.getElementById('phone');
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
   window.backButton = document.getElementById('back');
   window.paymentForm = document.getElementById('payment-form');
   window.paymentSection = document.getElementById('payment');
+  window.warningField = document.getElementById('warning');
   updateTotal();
   pricePerField.addEventListener('change', costUpdated, false);
   quantityField.addEventListener('change', quantityUpdated, false);
@@ -74,11 +76,20 @@ var updateTotal = function() {
 
 var checkout = function(e) {
   e.preventDefault();
-  paymentForm.classList.add('d-none');
-  paymentSection.classList.remove('d-none');
+  if (nameField.value != '' && emailField.value != '' && phoneField.value != '') {
+    warningField.classList.add('d-none');
+    paymentForm.classList.add('d-none');
+    paymentSection.classList.remove('d-none');
+  } else {
+    warningField.classList.remove('d-none');
+  }
 };
 
 var back = function() {
   paymentSection.classList.add('d-none');
   paymentForm.classList.remove('d-none');
+};
+
+var setCookie = function(name, value) {
+  document.cookie = name + "=" + value + ";";
 };

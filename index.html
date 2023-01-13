@@ -3,7 +3,7 @@
   <head>
     <title>Portland Megaband 2023</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <script type="text/javascript" src="form.js?v=010"></script>
+    <script type="text/javascript" src="form.js?v=015"></script>
     <script src="https://www.paypal.com/sdk/js?client-id=AfeU3URC6FLukidcSjXRzZh2BwwwS_JsMM_T9VkjXsP591D4r__zomC4c4R5OIIk3OZiewFplpwBw9oG&disable-funding=credit&currency=USD&intent=capture&enable-funding=venmo" data-sdk-integration-source="integrationbuilder"></script>
     <script type="text/javascript" src="paypal.js?v=005"></script>
     <link rel='stylesheet' href='styles.css?v=002'>
@@ -59,11 +59,11 @@
                 <div id='admission-cost-container'>
                   <div class="input-group mb-3">
                     <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                    <input id="admission-cost" min="15" max="30" step="1" value="30" type="tel" step="1" name="order[admission_cost]" />
+                    <input id="admission-cost" min="15" max="30" step="1" value="30" type="number" step="1" name="order[admission_cost]" />
                   </div>
                 </div>
                 <div><label for="order_admission_quantity">Select admissions quantity (1-4)</label></div>
-                <div><input id="admission-quantity" min="1" max="9" step="1" value="1" type="tel" step="1" name="order[admission_quantity]" /></div>
+                <div><input id="admission-quantity" min="1" max="9" step="1" value="1" type="number" step="1" name="order[admission_quantity]" /></div>
               </div>
           </div>
 
@@ -93,6 +93,7 @@
         <div id="cart-2" class="cart box details">
           <h4>Total $<span id="total-2"></span></h4>
           <p id="total-details-2"></p>
+          <p class="text-danger"><strong>For testing debit/credit, use card #: 4012000077777777<br>(any future expiration, any CSC, any valid address)</strong></p>
         </div>
 
         <div id="paypal-button-container"></div>

@@ -84,6 +84,7 @@ var toggleAdditionals = function() {
 
 var hide = function(el) {
   el.style.display = 'none';
+  el.querySelector('input').value = '';
   el.querySelector('.warning').style.visibility = 'hidden';
 }
 

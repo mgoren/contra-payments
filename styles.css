@@ -135,7 +135,7 @@ body {
 .payment-form .details {
   padding: 25px 25px 15px;
 }
-.payment-form .details label {
+.payment-form .details label, .additional label {
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 15px;

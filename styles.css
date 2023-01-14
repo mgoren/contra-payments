@@ -2,6 +2,13 @@ body {
   background-color: #f0ebf8 !important;
 }
 
+.warning {
+  visibility: hidden;
+  color: red;
+  font-weight: 500;
+  padding-top: .5rem;
+}
+
 #thanks {
   margin-top: 20px;
   padding: 30px;
@@ -71,16 +78,6 @@ body {
   padding-right: 15px;
 }
 
-.payment-form .row {
-  margin-top: 16px;
-  margin-bottom: 32px;
-}
-
-/* .payment-form .content {
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
-  background-color: white;
-} */
-
 .payment-form p {
   text-align: left;
   max-width: 500px;
@@ -122,10 +119,10 @@ body {
   width: 4rem;
   padding-left: 0.5rem;
 }
-.payment-form #note {
+.payment-form .additional {
   display: none;
 }
-.payment-form #note #order_note {
+.payment-form .additional input {
   margin-top: 0.5rem;
 }
 .payment-form .products .total {
@@ -156,6 +153,7 @@ body {
   border-style: solid;
   border-width: 1px;
   border-radius: 3px;
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   display: inline-block;
@@ -179,15 +177,6 @@ body {
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 5px;
-}
-.payment-form .form-row {
-  padding: 20px;
-}
-
-@media (min-width: 576px) {
-  #order_note {
-    width: 155%;
- }
 }
 
 @media (min-width: 606px) {

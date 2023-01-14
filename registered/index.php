@@ -13,10 +13,13 @@
       $name= $_COOKIE["name"];
       $email= $_COOKIE["email"];
       $phone= $_COOKIE["phone"];
-      $note= $_COOKIE["note"];
       $quantity= $_COOKIE["quantity"];
       $pricePer= $_COOKIE["pricePer"];
       $total= $_COOKIE["total"];
+      $additional1= $_COOKIE["additional1"];
+      $additional2= $_COOKIE["additional2"];
+      $additional3= $_COOKIE["additional3"];
+      $additionals= str_replace('|', ', ', $_COOKIE["additionals"]);
 
       if ($name === null) {
         echo "<script type='text/JavaScript'>document.addEventListener('DOMContentLoaded', function() {document.getElementById('thanks').classList.add('d-none'); document.getElementById('nocookies').classList.remove('d-none')});</script>";
@@ -27,7 +30,10 @@
           'name' => $name,
           'email' => $email,
           'phone' => $phone,
-          'note' => $note,
+          'additional1' => $additional1,
+          'additional2' => $additional2,
+          'additional3' => $additional3,
+          'additionals' => $additionals,
           'quantity' => $quantity,
           'pricePer' => $pricePer,
           'total' => $total
@@ -71,6 +77,7 @@
             <hr>
             <p><strong>Megaband admissions:</strong></p>
             <p><?= $quantity ?> x $<?= $pricePer ?> = $<?= $total ?></p>
+            <p>Additional admissions: <?= $additionals ?></p>
             <p><strong>You will not receive a physical ticket; your name will be on a list at the door.</strong></p>
             <hr>
             <p>

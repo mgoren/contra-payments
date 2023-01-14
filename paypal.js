@@ -22,10 +22,14 @@ const paypalButtonsComponent = paypal.Buttons({
   },
   onApprove: (data, actions) => {
     const captureOrderHandler = (details) => {
+      const additionals = quantityField.value > 1 ? [additionalField1.value, additionalField2.value, additionalField3.value].filter(item => item).join('|') : 'none';
       setCookie('name', nameField.value);
       setCookie('email', emailField.value);
       setCookie('phone', phoneField.value);
-      setCookie('note', noteField.value);
+      setCookie('additional1', additionalField1.value);
+      setCookie('additional2', additionalField2.value);
+      setCookie('additional3', additionalField3.value);
+      setCookie('additionals', additionals)
       setCookie('pricePer', pricePerField.value);
       setCookie('quantity', quantityField.value);
       setCookie('total', parseInt(quantityField.value) * parseInt(pricePerField.value));

@@ -5,20 +5,34 @@ var quantity_max = 4;
 var deleteCookie = function(name) {
   document.cookie = name +"=; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 };
-['webhookSent','name','email','phone','note','pricePer','quantity','total'].forEach(cookie=>deleteCookie(cookie));
+['webhookSent','name','email','phone','additional1','additional2','additional3','additionals','pricePer','quantity','total'].forEach(cookie=>deleteCookie(cookie));
 
 if (!navigator.cookieEnabled) {
   location.href="nocookies.html";
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+  labelDomElements();
+  updateTotal();
+  addEventListeners();
+  if (mobileCheck()) {
+    pricePerField.type = 'tel';
+    quantityField.type = 'tel';
+  }
+}, false);
+
+var labelDomElements = function() {
   window.nameField = document.getElementById('name');
   window.emailField = document.getElementById('email');
   window.phoneField = document.getElementById('phone');
   window.pricePerField = document.getElementById('admission-cost');
   window.quantityField = document.getElementById('admission-quantity');
-  window.noteSection = document.getElementById('note');
-  window.noteField = document.getElementById('order_note');
+  window.additional1 = document.getElementById('additional-1-section');
+  window.additional2 = document.getElementById('additional-2-section');
+  window.additional3 = document.getElementById('additional-3-section');
+  window.additionalField1 = document.getElementById('additional_1');
+  window.additionalField2 = document.getElementById('additional_2');
+  window.additionalField3 = document.getElementById('additional_3');
   window.totalField = document.getElementById('total');
   window.totalField2 = document.getElementById('total-2');
   window.totalDetailsField = document.getElementById('total-details');
@@ -27,28 +41,55 @@ document.addEventListener('DOMContentLoaded', function() {
   window.backButton = document.getElementById('back');
   window.paymentForm = document.getElementById('payment-form');
   window.paymentSection = document.getElementById('payment');
-  window.warningField = document.getElementById('warning');
-  updateTotal();
+  window.warningField1 = document.getElementById('warning');
+  window.warningField2 = document.getElementById('warning-2');
+  window.inputs = document.querySelectorAll('.form-control');
+};
+
+var addEventListeners = function() {
   pricePerField.addEventListener('change', costUpdated, false);
   quantityField.addEventListener('change', quantityUpdated, false);
-  quantityField.addEventListener('keyup', toggleNote, false);
+  quantityField.addEventListener('keyup', toggleAdditionals, false);
   checkoutButton.addEventListener('click', checkout, false);
   backButton.addEventListener('click', back, false);
-  if (mobileCheck()) {
-    console.log('mobile');
-    pricePerField.type = 'tel';
-    quantityField.type = 'tel';
-  }
-}, false);
+  inputs.forEach(el => el.addEventListener('blur', event => {
+    validateField(event.target);
+  }));
+};
 
-var toggleNote = function() {
-  var quantity = quantityField.value;
-  if (!isNaN(quantity) && quantity > 1) {
-    noteSection.style.display = 'block';
-  } else {
-    noteSection.style.display = 'none';
+var toggleAdditionals = function() {
+  var quantity = parseInt(quantityField.value);
+  if (isNaN(quantity) || quantity == 1) {
+    hide(additional1);
+    hide(additional2);
+    hide(additional3);
+    console.log('');
+  } else if (quantity == 2) {
+    show(additional1);
+    hide(additional2);
+    hide(additional3);
+    console.log('');
+  } else if (quantity == 3) {
+    show(additional1);
+    show(additional2);
+    hide(additional3);
+    console.log('');
+  } else if (quantity == 4) {
+    show(additional1);
+    show(additional2);
+    show(additional3);
+    console.log('');
   }
 };
+
+var hide = function(el) {
+  el.style.display = 'none';
+  el.querySelector('.warning').style.visibility = 'hidden';
+}
+
+var show = function(el) {
+  el.style.display = 'block';
+}
 
 var costUpdated = function() {
   pricePerField.value = pricePerField.value.split('.')[0];
@@ -69,8 +110,8 @@ var quantityUpdated = function() {
   } else if (quantity > quantity_max) {
     quantityField.value = quantity_max;
   }
-  toggleNote();
   updateTotal();
+  toggleAdditionals();
 };
 
 var updateTotal = function() {
@@ -90,12 +131,36 @@ var updateTotal = function() {
 
 var checkout = function(e) {
   e.preventDefault();
-  if (nameField.value != '' && emailField.value != '' && phoneField.value != '') {
-    warningField.classList.add('d-none');
+  if (validateAllFields()) {
     paymentForm.classList.add('d-none');
     paymentSection.classList.remove('d-none');
+  }
+};
+
+var validateField = function(el) {
+  const warningField = el.parentElement.querySelector('.warning');
+  el.value == '' ? warningField.style.visibility = 'visible' : warningField.style.visibility = 'hidden';
+};
+
+var validateAllFields = function() {
+  inputs.forEach(el => validateField(el));
+  return mainInputCompleted() && additionalFieldsCompleted();
+};
+
+var mainInputCompleted = function() {
+  return nameField.value != '' && emailField.value != '' && phoneField.value != '';
+}
+
+var additionalFieldsCompleted = function() {
+  const quantity = parseInt(quantityField.value);
+  if (quantity == 4) {
+    return additionalField1.value != '' && additionalField2.value != '' && additionalField3.value != '';
+  } else if (quantity == 3) {
+    return additionalField1.value != '' && additionalField2.value != '';
+  } else if (quantity == 2) {
+    return additionalField1.value != ''
   } else {
-    warningField.classList.remove('d-none');
+    return true;
   }
 };
 

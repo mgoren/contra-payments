@@ -135,7 +135,7 @@ body {
 .payment-form .details {
   padding: 25px 25px 15px;
 }
-.payment-form .details label, .additional label {
+.payment-form label {
   font-size: 12px;
   font-weight: 600;
   margin-bottom: 15px;
@@ -208,4 +208,14 @@ body {
   .payment-form .details {
     padding: 40px 40px 30px;
  }
+}
+
+@media (max-width: 605px) {
+  .admissions-container #admission-quantity-label {
+    margin-top: 2rem;
+  }
+
+  .admissions-container #admission-quantity {
+    margin-bottom: .6rem;
+  }
 }

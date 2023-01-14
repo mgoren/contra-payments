@@ -20,6 +20,7 @@
       $additional2= $_COOKIE["additional2"];
       $additional3= $_COOKIE["additional3"];
       $additionals= str_replace('|', ', ', $_COOKIE["additionals"]);
+      $paypalEmail= $_COOKIE["paypalEmail"];
 
       if ($name === null) {
         echo "<script type='text/JavaScript'>document.addEventListener('DOMContentLoaded', function() {document.getElementById('thanks').classList.add('d-none'); document.getElementById('nocookies').classList.remove('d-none')});</script>";
@@ -36,7 +37,8 @@
           'additionals' => $additionals,
           'quantity' => $quantity,
           'pricePer' => $pricePer,
-          'total' => $total
+          'total' => $total,
+          'paypalEmail' => $paypalEmail
         ];
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);

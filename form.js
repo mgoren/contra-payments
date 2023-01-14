@@ -5,7 +5,7 @@ var quantity_max = 4;
 var deleteCookie = function(name) {
   document.cookie = name +"=; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 };
-['webhookSent','name','email','phone','additional1','additional2','additional3','additionals','pricePer','quantity','total'].forEach(cookie=>deleteCookie(cookie));
+['webhookSent','name','email','phone','additional1','additional2','additional3','additionals','pricePer','quantity','total','paypalEmail'].forEach(cookie=>deleteCookie(cookie));
 
 if (!navigator.cookieEnabled) {
   location.href="nocookies.html";

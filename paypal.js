@@ -22,6 +22,7 @@ const paypalButtonsComponent = paypal.Buttons({
   },
   onApprove: (data, actions) => {
     const captureOrderHandler = (details) => {
+      const paypalEmail = details['payer']['email_address'];
       const additionals = quantityField.value > 1 ? [additionalField1.value, additionalField2.value, additionalField3.value].filter(item => item).join('|') : 'none';
       setCookie('name', nameField.value);
       setCookie('email', emailField.value);
@@ -33,6 +34,7 @@ const paypalButtonsComponent = paypal.Buttons({
       setCookie('pricePer', pricePerField.value);
       setCookie('quantity', quantityField.value);
       setCookie('total', parseInt(quantityField.value) * parseInt(pricePerField.value));
+      setCookie('paypalEmail', paypalEmail);
       location.href='registered/';
     };
     return actions.order.capture().then(captureOrderHandler);

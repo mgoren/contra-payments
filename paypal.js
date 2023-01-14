@@ -35,12 +35,11 @@ const paypalButtonsComponent = paypal.Buttons({
       setCookie('quantity', quantityField.value);
       setCookie('total', parseInt(quantityField.value) * parseInt(pricePerField.value));
       setCookie('paypalEmail', paypalEmail);
-      location.href='registered/';
+      location.href='register.php?' + Math.random();
     };
     return actions.order.capture().then(captureOrderHandler);
   },
   onError: (err) => {
-    console.log(err);
     location.href='failure.html';
   }
 });

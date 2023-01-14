@@ -63,22 +63,18 @@ var toggleAdditionals = function() {
     hide(additional1);
     hide(additional2);
     hide(additional3);
-    console.log('');
   } else if (quantity == 2) {
     show(additional1);
     hide(additional2);
     hide(additional3);
-    console.log('');
   } else if (quantity == 3) {
     show(additional1);
     show(additional2);
     hide(additional3);
-    console.log('');
   } else if (quantity == 4) {
     show(additional1);
     show(additional2);
     show(additional3);
-    console.log('');
   }
 };
 

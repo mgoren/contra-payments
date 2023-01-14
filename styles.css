@@ -179,6 +179,16 @@ body {
   margin-top: 5px;
 }
 
+#success {
+  margin-top: 1rem;
+  background-color: lightyellow;
+}
+
+#thanks {
+  background-color: white;
+  margin-bottom: 2rem;
+}
+
 @media (min-width: 606px) {
   .admissions-container {
     display: grid;

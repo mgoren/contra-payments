@@ -6,6 +6,7 @@
   $phone= $_COOKIE["phone"];
   $quantity= $_COOKIE["quantity"];
   $pricePer= $_COOKIE["pricePer"];
+  $donation= $_COOKIE["donation"];
   $total= $_COOKIE["total"];
   $additional1= $_COOKIE["additional1"];
   $additional2= $_COOKIE["additional2"];
@@ -28,6 +29,8 @@
       'additionals' => $additionals,
       'quantity' => $quantity,
       'pricePer' => $pricePer,
+      'totalAdmissions' => intval($quantity) * intval($pricePer),
+      'donation' => $donation,
       'total' => $total,
       'paypalEmail' => $paypalEmail
     ];

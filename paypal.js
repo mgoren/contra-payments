@@ -33,7 +33,8 @@ const paypalButtonsComponent = paypal.Buttons({
       setCookie('additionals', additionals)
       setCookie('pricePer', pricePerField.value);
       setCookie('quantity', quantityField.value);
-      setCookie('total', parseInt(quantityField.value) * parseInt(pricePerField.value));
+      setCookie('donation', donationField.value);
+      setCookie('total', parseInt(totalField.textContent));
       setCookie('paypalEmail', paypalEmail);
       location.href='register.php?' + Math.random();
     };

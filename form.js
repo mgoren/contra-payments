@@ -5,7 +5,7 @@ var quantity_max = 4;
 var deleteCookie = function(name) {
   document.cookie = name +"=; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 };
-['webhookSent','name','email','phone','additional1','additional2','additional3','additionals','pricePer','quantity','total','paypalEmail'].forEach(cookie=>deleteCookie(cookie));
+['webhookSent','name','email','phone','additional1','additional2','additional3','additionals','pricePer','quantity','donation','total','paypalEmail'].forEach(cookie=>deleteCookie(cookie));
 
 if (!navigator.cookieEnabled) {
   location.href="nocookies.html";
@@ -33,8 +33,13 @@ var labelDomElements = function() {
   window.additionalField1 = document.getElementById('additional_1');
   window.additionalField2 = document.getElementById('additional_2');
   window.additionalField3 = document.getElementById('additional_3');
+  window.donationQuestion = document.getElementById('donation_question');
+  window.donationSection = document.getElementById('donations');
+  window.donationField = document.getElementById('donation');
   window.totalField = document.getElementById('total');
   window.totalField2 = document.getElementById('total-2');
+  window.totalDonationField1 = document.getElementById('total-donation');
+  window.totalDonationField2 = document.getElementById('total-donation-2');
   window.totalDetailsField = document.getElementById('total-details');
   window.totalDetailsField2 = document.getElementById('total-details-2');
   window.checkoutButton = document.getElementById('checkout');
@@ -50,6 +55,8 @@ var addEventListeners = function() {
   pricePerField.addEventListener('change', costUpdated, false);
   quantityField.addEventListener('change', quantityUpdated, false);
   quantityField.addEventListener('keyup', toggleAdditionals, false);
+  donationQuestion.addEventListener('change', toggleDonations, false);
+  donationField.addEventListener('change', DonationUpdated, false);
   checkoutButton.addEventListener('click', checkout, false);
   backButton.addEventListener('click', back, false);
   inputs.forEach(el => el.addEventListener('blur', event => {
@@ -78,6 +85,16 @@ var toggleAdditionals = function() {
   }
 };
 
+var toggleDonations = function() {
+  if (donationQuestion.value == 'Yes') {
+    donationSection.classList.remove('d-none');
+  } else {
+    donationField.value = '0';
+    donationSection.classList.add('d-none');
+    updateTotal();
+  }
+};
+
 var hide = function(el) {
   el.style.display = 'none';
   el.querySelector('input').value = '';
@@ -99,6 +116,15 @@ var costUpdated = function() {
   updateTotal();
 };
 
+var DonationUpdated = function() {
+  donationField.value = donationField.value.split('.')[0];
+  var donation = parseInt(donationField.value);
+  if (isNaN(donation) || donation < 0) {
+    donationField.value = 0;
+  }
+  updateTotal();
+};
+
 var quantityUpdated = function() {
   quantityField.value = quantityField.value.split('.')[0];
   var quantity = parseInt(quantityField.value);
@@ -114,15 +140,23 @@ var quantityUpdated = function() {
 var updateTotal = function() {
   var pricePer = parseInt(pricePerField.value);
   var quantity = parseInt(quantityField.value);
-  var total = pricePer * quantity;
+  var donation = parseInt(donationField.value);
+  var total = pricePer * quantity + donation;
   totalField.textContent = total;
   totalField2.textContent = total;
   if (quantity > 1) {
-    totalDetailsField.textContent = '(' + quantity + ' admissions at $' + pricePer + ' each)';
-    totalDetailsField2.textContent = '(' + quantity + ' admissions at $' + pricePer + ' each)';
+    totalDetailsField.textContent = quantity + ' admissions at $' + pricePer + ' each';
+    totalDetailsField2.textContent = quantity + ' admissions at $' + pricePer + ' each';
   } else {
-    totalDetailsField.textContent = '(1 admission)';
-    totalDetailsField2.textContent = '(1 admission)';
+    totalDetailsField.textContent = '1 admission';
+    totalDetailsField2.textContent = '1 admission';
+  }
+  if (donation > 0) {
+    totalDonationField1.textContent = 'Additional donation: $' + donation;
+    totalDonationField2.textContent = 'Additional donation: $' + donation;
+  } else {
+    totalDonationField1.textContent = 'No additonal donation';
+    totalDonationField2.textContent = 'No additional donation';
   }
 };
 

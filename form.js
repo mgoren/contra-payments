@@ -57,6 +57,7 @@ var addEventListeners = function() {
   quantityField.addEventListener('keyup', toggleAdditionals, false);
   donationQuestion.addEventListener('change', toggleDonations, false);
   donationField.addEventListener('change', DonationUpdated, false);
+  donationField.addEventListener('keyup', updateTotal, false);
   checkoutButton.addEventListener('click', checkout, false);
   backButton.addEventListener('click', back, false);
   inputs.forEach(el => el.addEventListener('blur', event => {
@@ -140,7 +141,7 @@ var quantityUpdated = function() {
 var updateTotal = function() {
   var pricePer = parseInt(pricePerField.value);
   var quantity = parseInt(quantityField.value);
-  var donation = parseInt(donationField.value);
+  var donation = parseInt(donationField.value) || 0;
   var total = pricePer * quantity + donation;
   totalField.textContent = total;
   totalField2.textContent = total;
@@ -148,8 +149,8 @@ var updateTotal = function() {
     totalDetailsField.textContent = quantity + ' admissions at $' + pricePer + ' each';
     totalDetailsField2.textContent = quantity + ' admissions at $' + pricePer + ' each';
   } else {
-    totalDetailsField.textContent = '1 admission';
-    totalDetailsField2.textContent = '1 admission';
+    totalDetailsField.textContent = '1 admission ($' + pricePer + ')';
+    totalDetailsField2.textContent = '1 admission ($' + pricePer + ')';
   }
   if (donation > 0) {
     totalDonationField1.textContent = 'Additional donation: $' + donation;
